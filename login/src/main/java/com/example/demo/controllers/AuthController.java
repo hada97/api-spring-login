@@ -24,7 +24,7 @@ public class AuthController {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final TokenService;
+    private final TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO body){
@@ -39,7 +39,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body){
-        Optional<User> user = this.repository.findByEmail(body.email());
+        Optional<Object> user = this.repository.findByEmail(body.email());
 
         if(user.isEmpty()) {
             User newUser = new User();
